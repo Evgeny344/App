@@ -1,0 +1,31 @@
+<button nz-button nzType="primary" (click)="additionUser.isVisibleModal=true">Добавить</button>
+<nz-table #table [nzData]="listOfDisplayUsers">
+  <thead>
+    <tr>
+      <th nzCustomFilter *ngFor="let column of listOfColumn" [nzSortFn]="column.compare" [nzSortPriority]="column.priority">
+        {{ column.title }}
+        <nz-filter-trigger [(nzVisible)]="column.isFilterVisible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+          <span nz-icon nzType="search"></span>
+        </nz-filter-trigger>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <div class="search-box">
+            <input type="text" nz-input placeholder="search" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search(column)" class="search-button">Искать</button>
+            <button nz-button nzSize="small" (click)="reset(column)">Сбросить</button>
+          </div>
+        </nz-dropdown-menu>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data" (click)="userInfo.showInfo(data)">
+      <td>{{ data.id }}</td>
+      <td>{{ data.firstName }}</td>
+      <td>{{ data.lastName }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.phone }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+<app-user-info #userInfo></app-user-info>
+<app-addition-user (onAdded)="onAdded($event)" #additionUser></app-addition-user>

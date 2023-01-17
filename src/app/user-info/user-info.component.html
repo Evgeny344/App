@@ -1,0 +1,11 @@
+<nz-modal [(nzVisible)]="isVisibleModal" nzTitle="Информация о пользователе" nzClosable ="false" (nzOnCancel)="exitModal()" (nzOnOk)="exitModal()">
+  <ng-container *nzModalContent>
+    <p>Выбран пользователь: <b>{{selectedUser!.firstName}} {{selectedUser!.lastName}} </b></p>
+    <p>Описание:</p>
+    <p><textarea>{{selectedUser!.description}}</textarea></p>
+    <p>Адрес проживания: <b>{{selectedUser!.address.streetAddress}}</b></p>
+    <p>Город: <b>{{selectedUser!.address.city}}</b></p>
+    <p>Провинция/штат: <b>{{selectedUser!.address.state}}</b></p>
+    <p>Индекс: <b>{{selectedUser!.address.zip}}</b></p>
+  </ng-container>
+</nz-modal>

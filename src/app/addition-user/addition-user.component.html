@@ -1,0 +1,82 @@
+<nz-modal [(nzVisible)]="isVisibleModal" nzTitle="Добавление пользователя" nzClosable="false">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id" nzRequired>Id</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите id!">
+          <nz-input-number id="id" formControlName="id" placeholder="id" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id" nzRequired>Имя</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите Имя!">
+          <input nz-input id="firstName" formControlName="firstName" placeholder="firstName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id" nzRequired>Фамилия</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите Фамилию!">
+          <input nz-input id="lastName" formControlName="lastName" placeholder="lastName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите E-mail!">
+          <input nz-input id="email" formControlName="email" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Телефона</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите ваш номер!">
+          <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+            <ng-template #addOnBeforeTemplate>
+              <nz-select formControlName="phoneNumberPrefix" class="phone-select">
+                <nz-option nzLabel="612" nzValue="612"></nz-option>
+                <nz-option nzLabel="613" nzValue="613"></nz-option>
+              </nz-select>
+            </ng-template>
+            <nz-input-number id="phoneNumber" formControlName="phoneNumber" nz-input />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="streetAddress" nzRequired>Адрес улицы</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите адрес улицы!">
+          <input nz-input id="streetAddress" formControlName="streetAddress" placeholder="streetAddress" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="city" nzRequired>Город</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите название города!">
+          <input nz-input id="city" formControlName="city" placeholder="city" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="state" nzRequired>Провинция</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите название провинции!">
+          <input nz-input id="state" formControlName="state" placeholder="state" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="zip" nzRequired>Индекс</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Пожалуйста введите индекс проживания!">
+          <nz-input-number id="zip" formControlName="zip" placeholder="zip" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">Описание</nz-form-label>
+        <nz-textarea-count [nzMaxCharacterCount]="2000">
+          <textarea formControlName="description" nz-input rows="2" placeholder="description"></textarea>
+        </nz-textarea-count>
+      </nz-form-item>
+    </form>
+  </ng-container>
+  <ng-template [nzModalFooter]>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid" (click)="add()" [nzLoading]="isLoadingData">Отправить</button>
+      <button nz-button (click)="exitModal()">Закрыть</button>
+    </nz-form-control>
+  </ng-template>
+</nz-modal>
+
+
